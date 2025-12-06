@@ -25,7 +25,7 @@ def find_sources(dirs, exts):
 
 # Configuration
 libname = "perry"
-projectdir = "test_project"
+projectdir = rprojectdir = r"C:\Users\Windows\Desktop\Sei la\Sei la\perrytheparry"
 
 # Set up the environment
 env = Environment(tools=["default"], PLATFORM="")
