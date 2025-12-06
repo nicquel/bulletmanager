@@ -24,11 +24,11 @@ private:
     Ref<DamageDealer> damage_dealer;
     uint32_t collision_mask = 1;
     double lifespan = 5.0;
-    
-    // --- Optimized Data Arrays ---
+
     std::vector<BulletData> active_bullets;
-    std::vector<int> inactive_indices;
     std::vector<int> bullets_to_remove;
+
+    Ref<PhysicsRayQueryParameters3D> ray_query;
 
 protected:
     static void _bind_methods();
@@ -39,19 +39,17 @@ public:
     ~BulletManager();
 
     void _ready() override;
-    void _physics_process(double delta) override;
     void _exit_tree() override;
+    void _physics_process(double delta) override;
 
-    // Public API
     void create_bullet(const Transform3D &p_transform);
-    
-    // Getters and Setters
+
     void set_damage_dealer(const Ref<DamageDealer> &p_dealer) { damage_dealer = p_dealer; }
     Ref<DamageDealer> get_damage_dealer() const { return damage_dealer; }
-    
+
     void set_collision_mask(uint32_t p_mask) { collision_mask = p_mask; }
     uint32_t get_collision_mask() const { return collision_mask; }
-    
+
     void set_lifespan(double p_lifespan) { lifespan = p_lifespan; }
     double get_lifespan() const { return lifespan; }
 
